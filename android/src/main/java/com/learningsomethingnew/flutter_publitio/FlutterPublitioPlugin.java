@@ -28,6 +28,7 @@ import io.flutter.plugin.common.PluginRegistry.Registrar;
 
 /** FlutterPublitioPlugin */
 public class FlutterPublitioPlugin implements MethodCallHandler {
+  private final Registrar mRegistrar;
   Publitio mPublitio;
 
   /** Plugin registration. */
@@ -37,7 +38,7 @@ public class FlutterPublitioPlugin implements MethodCallHandler {
   }
 
   private FlutterPublitioPlugin(MethodChannel channel, Registrar registrar) {
-    
+    mRegistrar = registrar;
   }
 
   @Override
@@ -54,13 +55,13 @@ public class FlutterPublitioPlugin implements MethodCallHandler {
         break;
     }
   }
-  private void uploadFile(MethodCall call, final Result result) {
+  private void configure(MethodCall call, final Result result) {
     final String apiKey = call.argument("apiKey");
     final String apiSecret = call.argument("apiSecret");
     APIConfiguration.apiKey = apiKey;
     APIConfiguration.apiSecret = apiSecret;
-    mPublitio = new Publitio(registrar.activity());
-    result(null);
+    mPublitio = new Publitio(mRegistrar.activity());
+    result.success(null);
   }
 
   private void uploadFile(MethodCall call, final Result result) {
