@@ -15,9 +15,16 @@ public class SwiftFlutterPublitioPlugin: NSObject, FlutterPlugin {
           return
         }
         if let myArgs = args as? [String: Any],
-            let path = myArgs["path"] as? String {
+            let path = myArgs["path"] as? String,
+        let options = myArgs["options"] as? NSDictionary {
+            
+            let optionDownload = options.object(forKey: "option_download") as! Bool
         
-            Publitio.shared.filesCreate(localMediaPath: path, mimeType: .mov, fileUrl: nil, publicId: nil, title: nil, description: nil, tags: nil, privacy: true, optionDownload: true, optionTransform: true, optionAd: nil, completion: { (success, publitioResult) in
+            Publitio.shared.filesCreate(
+                localMediaPath: path,
+                mimeType: .mov,
+                fileUrl: nil,
+                publicId: nil, title: nil, description: nil, tags: nil, privacy: true, optionDownload: optionDownload, optionTransform: true, optionAd: nil, completion: { (success, publitioResult) in
                 DispatchQueue.main.async {
                     if (success) {
                         result(publitioResult)

@@ -73,12 +73,18 @@ public class FlutterPublitioPlugin implements MethodCallHandler {
     }
     final Uri fileUri = Uri.fromFile(file);
 
+    Map<String, String> options = call.argument("options");
+    if (options == null) {
+      result.error("no_options", "Please send options", null);
+      return;
+    }
+
     Map<String, String> create = new HashMap<>();
-    create.put(CreateFileParams.PRIVACY, FilesPrivacyParams.PUBLIC);
-    create.put(CreateFileParams.OPTION_DOWNLOAD, FilesDownloadParams.DISABLE);
-    create.put(CreateFileParams.OPTION_TRANSFORM, FilesTransformationParams.DISABLE);
-    create.put(CreateFileParams.OPTION_AD, FilesADParams.ENABLE);
-    create.put(CreateFileParams.RESOLUTION, FilesResolutions.RES_LOW);
+    addOptionIfDefined(create, options, CreateFileParams.PRIVACY);
+    addOptionIfDefined(create, options, CreateFileParams.OPTION_DOWNLOAD);
+    addOptionIfDefined(create, options, CreateFileParams.OPTION_TRANSFORM);
+    addOptionIfDefined(create, options, CreateFileParams.OPTION_AD);
+    addOptionIfDefined(create, options, CreateFileParams.RESOLUTION);
 
     try {
       mPublitio.files().uploadFile(fileUri, create, new PublitioCallback<JsonObject>() {
@@ -88,7 +94,6 @@ public class FlutterPublitioPlugin implements MethodCallHandler {
           String json = gson.toJson(res);
           Map hashmap = gson.fromJson(json, Map.class);
           result.success(hashmap);
-
         }
 
         @Override
@@ -100,5 +105,10 @@ public class FlutterPublitioPlugin implements MethodCallHandler {
       result.error("upload_error", publitioExceptions.toString(), null);
     }
 
+  }
+
+  private void addOptionIfDefined(Map<String, String> create, Map<String, String> options, String optionKey) {
+    if (options.containsKey(optionKey))
+      create.put(optionKey, options.get(optionKey));
   }
 }

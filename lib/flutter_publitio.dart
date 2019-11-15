@@ -11,8 +11,9 @@ class FlutterPublitio {
     });
   }
 
-  static Future<dynamic> uploadFile(String path) async {
-    final result = await _channel.invokeMethod('uploadFile', {"path": path});
+  static Future<dynamic> uploadFile(String path, options) async {
+    final result = await _channel
+        .invokeMethod('uploadFile', {"path": path, "options": options});
     return result;
   }
 }

@@ -59,7 +59,7 @@ class _HomeScreenState extends State<HomeScreen> {
             // final response = await FlutterPublitio.uploadFile('');
             // setState(() {
             //   _url = response["url_preview"];
-            // }); 
+            // });
 
             final File videoFile =
                 await ImagePicker.pickVideo(source: ImageSource.camera);
@@ -72,7 +72,13 @@ class _HomeScreenState extends State<HomeScreen> {
             });
             try {
               print('starting upload');
-              final response = await FlutterPublitio.uploadFile(videoFile.path);
+              final uploadOptions = {
+                "privacy": "1",
+                "option_download": "1",
+                "option_transform": "1"
+              };
+              final response = await FlutterPublitio.uploadFile(
+                  videoFile.path, uploadOptions);
               // If the widget was removed from the tree while the asynchronous platform
               // message was in flight, we want to discard the reply rather than calling
               // setState to update our non-existent appearance.
