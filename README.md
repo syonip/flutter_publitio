@@ -1,14 +1,40 @@
-# flutter_publitio
+# Publit.io plugin for Flutter
 
-A new flutter plugin project.
+A Flutter plugin to use the [Publit.io API](https://publit.io?fpr=jonathan43).
 
-## Getting Started
 
-This project is a starting point for a Flutter
-[plug-in package](https://flutter.dev/developing-packages/),
-a specialized package that includes platform-specific implementation code for
-Android and/or iOS.
+## Getting started
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+See the `example` directory for a complete sample app showing video upload and playback. Works on iOS and Android.
+
+To run the example app you'll need credentials:
+1. Create a free account at [Publit.io](https://publit.io?fpr=jonathan43), and get your credentials from the dashboard.
+2. Put your API key and secret in `example/ios/Runner/Info.plist`, and in `example/lib/main.dart` (replace the text `"YOUR_API_KEY"` and `"YOUR_API_SECRET"` respectively)
+3. Run the example using `flutter run`
+
+## Usage
+
+Add `flutter_publitio` as a dependency in your `pubspec.yaml`.
+
+### Configure
+
+```dart
+await FlutterPublitio.configure("YOUR_API_KEY", "YOUR_API_SECRET");
+```
+
+### Upload
+
+```dart
+final uploadOptions = {
+    "privacy": "1", // Marks file as publicly accessible
+    "option_download": "1", // Can be downloaded by anyone
+    "option_transform": "1" // Url transforms enabled
+};
+final response = await FlutterPublitio.uploadFile("file path", uploadOptions);
+
+print(response["url_preview"]);
+```
+
+## Features
+
+This plugin currently supports the `uploadFile` function. If you need more functions, please let me know by opening an issue (or make a PR 😜)
