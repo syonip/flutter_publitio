@@ -1,6 +1,6 @@
 # Publit.io plugin for Flutter
 
-A Flutter plugin to use the [Publit.io API](https://publit.io?fpr=jonathan43).
+A Flutter plugin that wraps the native [Publit.io API](https://publit.io?fpr=jonathan43) SDKs, for hosting and managing media assets (videos and images).
 
 
 ## Getting started
