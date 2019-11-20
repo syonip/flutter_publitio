@@ -1,7 +1,6 @@
 name: flutter_publitio
 description: Publit.io plugin for Flutter.
-version: 0.0.3
-author: Jonathan Perry
+version: 0.0.1
 homepage: https://github.com/syonip/flutter_publitio
 
 environment:
