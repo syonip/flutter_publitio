@@ -16,7 +16,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  String _url;
+  dynamic _response = null;
   bool _uploading = false;
 
   @override
@@ -28,25 +28,39 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Plugin example app'),
+        title: const Text('flutter_publitio example'),
       ),
       body: Center(
-        child: _url == null
-            ? Text('Waiting for url')
-            : FlatButton(
-                onPressed: () async {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return VideoPlayer(
-                          url: _url,
-                        );
-                      },
-                    ),
-                  );
-                },
-                child: const Text("Play"),
+        child: _response == null
+            ? Text('No video uploaded yet...')
+            : Center(
+                child: ListView(padding: const EdgeInsets.all(8), children: [
+                  Text('Video thumbnail:', style: TextStyle(fontSize: 20)),
+                  Padding(padding: EdgeInsets.only(top: 20.0)),
+                  Image.network(_response["url_thumbnail"], height: 120),
+                  Padding(padding: EdgeInsets.only(top: 20.0)),
+                  FlatButton(
+                    color: Colors.blue,
+                    textColor: Colors.white,
+                    onPressed: () async {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return VideoPlayer(
+                              url: _response["url_preview"],
+                            );
+                          },
+                        ),
+                      );
+                    },
+                    child: const Text("Play Video"),
+                  ),
+                  Padding(padding: EdgeInsets.only(top: 40.0)),
+                  Text('Server response:', style: TextStyle(fontSize: 20)),
+                  Padding(padding: EdgeInsets.only(top: 10.0)),
+                  Text(_response.toString()),
+                ]),
               ),
       ),
       floatingActionButton: FloatingActionButton(
@@ -56,11 +70,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 )
               : Icon(Icons.add),
           onPressed: () async {
-            // final response = await FlutterPublitio.uploadFile('');
-            // setState(() {
-            //   _url = response["url_preview"];
-            // });
-
             final File videoFile =
                 await ImagePicker.pickVideo(source: ImageSource.camera);
 
@@ -68,7 +77,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
             setState(() {
               _uploading = true;
-              _url = null;
+              _response = null;
             });
             try {
               print('starting upload');
@@ -82,13 +91,12 @@ class _HomeScreenState extends State<HomeScreen> {
               // If the widget was removed from the tree while the asynchronous platform
               // message was in flight, we want to discard the reply rather than calling
               // setState to update our non-existent appearance.
-              print(response);
-              print(response["url_preview"]);
+
               if (!mounted) return;
 
               setState(() {
                 _uploading = false;
-                _url = response["url_preview"];
+                _response = response;
               });
             } on PlatformException catch (e) {
               //TODO: show snackbar
