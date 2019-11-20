@@ -1,3 +1,7 @@
 ## 0.0.1
 
-* TODO: Describe initial release.
+* Supporting `uploadFile`
+
+## 0.0.2
+
+* Added description
