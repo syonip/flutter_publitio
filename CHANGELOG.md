@@ -5,3 +5,7 @@
 ## 0.0.2
 
 * Added description
+
+## 0.1.0
+
+* Updated readme
