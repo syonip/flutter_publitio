@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_publitio/flutter_publitio.dart';
 import 'package:flutter_publitio_example/video_player.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 void main() => runApp(HomeScreen());
 
@@ -37,7 +38,18 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: ListView(padding: const EdgeInsets.all(8), children: [
                   Text('Video thumbnail:', style: TextStyle(fontSize: 20)),
                   Padding(padding: EdgeInsets.only(top: 20.0)),
-                  Image.network(_response["url_thumbnail"], height: 120),
+                  Stack(
+                    alignment: Alignment.center,
+                    children: <Widget>[
+                      Center(child: CircularProgressIndicator()),
+                      Center(
+                        child: FadeInImage.memoryNetwork(
+                          placeholder: kTransparentImage,
+                          image: _response["url_thumbnail"],
+                        ),
+                      ),
+                    ],
+                  ),
                   Padding(padding: EdgeInsets.only(top: 20.0)),
                   FlatButton(
                     color: Colors.blue,
