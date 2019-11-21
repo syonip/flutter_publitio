@@ -45,7 +45,12 @@ public class SwiftFlutterPublitioPlugin: NSObject, FlutterPlugin {
                         result(publitioResult)
                         return
                     } else {
-                        result("Publitio.shared.filesCreate success is false")
+                        let error = (publitioResult as! [String : AnyObject])["error"];
+                        let message = (error as! [String : AnyObject])["message"];
+                        let code = (error as! [String : AnyObject])["code"];
+                        result(FlutterError(code: "PUBLITIO_ERROR",
+                        message: message as! String,
+                        details: nil))
                     }
                 }
             })

@@ -13,3 +13,7 @@
 ## 1.0.0
 
 * Updated example
+
+## 1.0.1
+
+* Passing error back to dart on iOS
