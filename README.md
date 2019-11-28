@@ -7,6 +7,8 @@ A Flutter plugin that wraps the native [Publit.io API](https://publit.io?fpr=jon
 
 See the `example` directory for a complete sample app showing video upload and playback. Works on iOS and Android.
 
+> For a more advance example, check out https://github.com/syonip/flutter_video_sharing
+
 To run the example app you'll need credentials:
 1. Create a free account at [Publit.io](https://publit.io?fpr=jonathan43), and get your credentials from the dashboard.
 2. Put your API key and secret in `example/ios/Runner/Info.plist`, and in `example/lib/main.dart` (replace the text `"YOUR_API_KEY"` and `"YOUR_API_SECRET"` respectively)
