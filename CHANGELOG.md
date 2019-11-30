@@ -17,3 +17,7 @@
 ## 1.0.1
 
 * Passing error back to dart on iOS
+
+## 1.0.1+2
+
+* Added dartdoc
