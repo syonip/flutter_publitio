@@ -12,7 +12,7 @@ class FlutterPublitio {
     });
   }
 
-  /// Uploads a file to publitio. 
+  /// Uploads a file to publitio.
   /// Returns a [map] with information about the uploaded file.
   static Future<dynamic> uploadFile(String path, options) async {
     final result = await _channel

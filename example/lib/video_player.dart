@@ -25,7 +25,6 @@ class _VideoPlayerState extends State<VideoPlayer> {
 
   @override
   void dispose() {
-
     if (chewieCtrl != null) chewieCtrl.dispose();
     if (videoPlayerCtrl != null) videoPlayerCtrl.dispose();
     super.dispose();

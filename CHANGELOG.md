@@ -21,3 +21,7 @@
 ## 1.0.1+2
 
 * Added dartdoc
+
+## 1.0.1+3
+
+* Flutter format
