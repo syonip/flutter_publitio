@@ -25,3 +25,7 @@
 ## 1.0.1+3
 
 * Flutter format
+
+## 1.0.2
+
+* Updated publitio pod to 1.4

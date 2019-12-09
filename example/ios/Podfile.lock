@@ -2,10 +2,10 @@ PODS:
   - Flutter (1.0.0)
   - flutter_publitio (0.0.1):
     - Flutter
-    - Publitio (~> 1.2)
+    - Publitio (~> 1.4)
   - image_picker (0.0.1):
     - Flutter
-  - Publitio (1.2)
+  - Publitio (1.4)
   - screen (0.0.1):
     - Flutter
   - video_player (0.0.1):
@@ -36,9 +36,9 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
-  flutter_publitio: 4ddf559df4d211a6de2ca266d9b32df48f606c76
+  flutter_publitio: 3a42a09e1051514d271147febf4f161a79d205e0
   image_picker: e3eacd46b94694dde7cf2705955cece853aa1a8f
-  Publitio: cabb49af3b7bab50d3f70bcc3486dd74bb02db44
+  Publitio: 3789d401433bb12ff18f014446b1d8dc5d5a4701
   screen: abd91ca7bf3426e1cc3646d27e9b2358d6bf07b0
   video_player: 69c5f029fac4ffe4fc8a85ea7f7b793709661549
 
