@@ -29,3 +29,7 @@
 ## 1.0.2
 
 * Updated publitio pod to 1.4
+
+## 1.0.3
+
+* Fixed iOS configure method

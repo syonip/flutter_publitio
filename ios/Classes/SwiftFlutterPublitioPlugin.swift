@@ -10,6 +10,10 @@ public class SwiftFlutterPublitioPlugin: NSObject, FlutterPlugin {
   }
 
   public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
+    if (call.method == "configure") { // No need for runtime configure in ios
+        result(nil)
+        return
+    }
     if (call.method == "uploadFile") {
         guard let args = call.arguments else {
           return
