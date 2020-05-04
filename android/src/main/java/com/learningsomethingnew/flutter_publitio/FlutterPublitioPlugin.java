@@ -79,15 +79,8 @@ public class FlutterPublitioPlugin implements MethodCallHandler {
       return;
     }
 
-    Map<String, String> create = new HashMap<>();
-    addOptionIfDefined(create, options, CreateFileParams.PRIVACY);
-    addOptionIfDefined(create, options, CreateFileParams.OPTION_DOWNLOAD);
-    addOptionIfDefined(create, options, CreateFileParams.OPTION_TRANSFORM);
-    addOptionIfDefined(create, options, CreateFileParams.OPTION_AD);
-    addOptionIfDefined(create, options, CreateFileParams.RESOLUTION);
-
     try {
-      mPublitio.files().uploadFile(fileUri, create, new PublitioCallback<JsonObject>() {
+      mPublitio.files().uploadFile(fileUri, options, new PublitioCallback<JsonObject>() {
         @Override
         public void success(JsonObject res) {
           Gson gson = new Gson();
@@ -107,8 +100,4 @@ public class FlutterPublitioPlugin implements MethodCallHandler {
 
   }
 
-  private void addOptionIfDefined(Map<String, String> create, Map<String, String> options, String optionKey) {
-    if (options.containsKey(optionKey))
-      create.put(optionKey, options.get(optionKey));
-  }
 }
