@@ -1,6 +1,6 @@
 name: flutter_publitio
 description: Publit.io plugin for Flutter, allowing uploading, hosting and delivering media assets images and videos.
-version: 1.0.3
+version: 1.0.4
 homepage: https://github.com/syonip/flutter_publitio
 
 environment:
