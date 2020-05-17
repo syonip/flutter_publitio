@@ -2,6 +2,8 @@
 
 A Flutter plugin that wraps the native [Publit.io API](https://publit.io?fpr=jonathan43) SDKs, for hosting and managing media assets (videos and images).
 
+## Security warning
+This method stores your publitio API key and secret on the client. This has security implications. Unless you're OK with all your files being theoretically available to all clients to view and modify, you should either call publitio from the server side (without this plugin), or use a method that supports serverless auth like I describe [here](https://www.learningsomethingnew.com/flutter-video-upload-firebase-storage-hls)
 
 ## Getting started
 
